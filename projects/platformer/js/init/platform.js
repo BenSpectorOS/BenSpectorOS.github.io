@@ -35,15 +35,10 @@
         platform.create(0, game.world.height - 32, 3, 2);
 
         // example:
+        platform.create(400, 500);
+        platform.create(500, 200);
+        platform.create(200, 600);
         
-        // optimal path
-        platform.create(400, 560);
-        platform.create(800, 450, 0.25);
-        platform.create(450, 380, 0.5);
-        platform.create(750, 300, 0.35);
-        
-        platform.create(100, 340, 0.4);
-        //platform.create(100, 340, 0.4);
         
         // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////

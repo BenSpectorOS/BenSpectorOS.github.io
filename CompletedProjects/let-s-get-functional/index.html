@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Mocha Spec Runner</title>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css">
+</head>
+<body>
+  <div id="mocha"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.4.2/mocha.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.1.0/chai.min.js"></script>
+  <script>mocha.setup('')</script>
+  <script>
+    var assert = chai.assert;
+    var expect = chai.expect;
+    var should = chai.should();
+  </script>
+
+  <script src="spec/bundle.spec.js"></script>
+
+  <script>mocha.run()</script>
+  <script>
+  $('html').hide();
+  $('document').ready(function() {
+    setTimeout(function() {
+      $('pre').remove();
+      console.log('Cleared stack');
+      $('html').show();
+    }, 2000);
+  });
+  </script>
+</body>
+</html>

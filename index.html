@@ -5,7 +5,7 @@
         <title>Ben Spector's Website</title>
         <style>
             body {
-                background: rgb(50, 40, 205);
+				background: url("https://s-media-cache-ak0.pinimg.com/originals/42/13/62/4213620254d4759dd99fa9216e88102a.jpg");
                 color: rgb(45, 45, 45);
                 padding: 10px;
                 font-family: arial;
@@ -14,7 +14,7 @@
                 font-size: 1.5em;
                 font-weight: bold;
             }
-            [id=all-contents] {
+            #all-contents {
                 max-width: 800px;
                 margin: auto;
             }
@@ -51,20 +51,46 @@
             main {
                 background: rgb(245, 238, 219);
                 display: flex;
+                margin: 15px;
             }
-            [class=sidebar] {
+            .sidebar {
                 margin-right: 25px;
                 padding: 10px;
             }
-            [class=sidebar] img {
+            .imageContainer {
+                height: 200px;
                 width: 200px;
             }
-            [class=content] {
+            .sidebar img {
+                width: 200px;
+                cursor: pointer;
+            }
+            .content {
                 flex: 1;
                 padding: 15px;
             }
-            [class=interests] header {
+            .interests header {
                 font-size: 1.25em;
+            }
+            .professional-content {
+                flex: 1;
+                padding: 15px;
+            }
+            .professional-interests header {
+                font-size: 1.25em;
+            }
+            .professional-interests {
+                display: none;
+            }
+            button {
+                margin: 10px;
+            }
+            .imageButtonsContainer{
+                display: block;
+            }
+            .clickedOn {
+                background-color: pink;
+                font-family: fantasy;
             }
         </style>
     </head>
@@ -80,7 +106,9 @@
             
             <main>
                 <div class="sidebar">
-                    <img src="https://scontent-dft4-2.xx.fbcdn.net/v/t31.0-8/18814854_10213618115233033_5696791116774456082_o.jpg?oh=0e3a7e154c9adffd18d4904eb1169de3&oe=59EAEE31">
+                    <div class = "imageContainer">
+                        <img src="img/cactus.jpeg">
+                    </div>
                 </div>
                 
                 <div class="content">
@@ -90,13 +118,12 @@
                     <section class="interests">
                         <header>Interests</header>
                         <ul>
-                            <li>Guitar</li>
-                            <li>Team Sports</li>
+                            <li>Music</li>
+                            <li>Teaching</li>
                             <li>Cooking</li>
                         </ul>
                     </section>
                 </div>
-                
             </main>
         </div>
     </body>

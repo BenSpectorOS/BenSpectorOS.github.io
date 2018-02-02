@@ -47,66 +47,63 @@
                 ////////////////////////////////////////////////////////////////
                 
                 // TODO 1: Declare our variables //
-                var i, circle, circles;
+                var circle = undefined;
+                var circles = [];
                 
                 // TODO 2: Initialize our variables //
-                i = 0;
-                circles = [];
-                
-                while (i < 100) {
-                    // TODO 3 : YOUR CODE STARTS HERE //////////////////////////
+                /* 
+                 * For-loops let us execute a block of code a set number of times.
+                 * Using the count variable we can keep track of how many times we have run the loop.
+                 * Here we want to run our loop 100 times to create 100 circles.
+                 */
+                 
+                while (circles.length < 100) {
                     circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
-                    
+        					
                     if (circle.alpha < .2) {
                     	draw.blurFilterOn(circle);
                     }
                     
                     physikz.addRandomVelocity(circle, canvas);
+                    circle.velocityX *= 5;
+                    circle.velocityY *= 5;
                     circles.push(circle);
                     view.addChild(circle);
-                    
-                    
-                    // TODO 3 : YOUR CODE ENDS HERE ////////////////////////////
-                    
-                    /*
-                     * IMPORTANT NOTE: 
-                     * The statement i++; increments our counter by 1 on each loop.
-                     * If we did not do this, the conditional check of while (i < 100)
-                     * would never return false, and we would loop forever!
-                     *
-                     * Leave this as the last statement in the while loop
-                     */
-                    i++;
                 }
                 
                 view.addChild(fps);
                 app.addUpdateable(fps);
 
                 function update() {
+                    /* 
+                     * For-loops also provide a convenient way to access elements of an Array one at a time.
+                     * We can use the variable i (short for index) as a placeholder for the numbered index we want to access
+                     * Like so: array[i]. 
+                     */
                     for (var i = 0; i < circles.length; i++) {
                         // TODO 4 : Access one circle at time from the circles Array //
                         circle = circles[i];
                         
                         // TODO 5 : Update the circles position //
-                        physikz.updatePosition(circle)
+                        physikz.updatePosition(circle);
                         
                         // TODO 6 : YOUR CODE STARTS HERE //////////////////////
                         
-                        canvas.width    // The the width of our canvas.
-                        canvas.height   // The height of our canvas.
-                        circle.x        // The circle's position along the x-axis, good for testing the right and left side borders.
-                        circle.y        // The circle's position along the y-axis, good for testing the top and bottom borders.
-                        circle.radius
-                        
                         if ( circle.x > canvas.width + circle.radius ) {
+                            // your code to place circle exactly off the stage at the left-side //
                             circle.x = 0 - circle.radius;
-                        } else if ( circle.x < 0 - circle.radius) {
+                            
+                        } else if (circle.x < 0 - circle.radius ) {
+                            // your code to place circle exactly off the stage at the right-side //
                             circle.x = canvas.width + circle.radius;
                         }
                         
-                        if ( circle.y < 0 - circle.radius ) {
+                        if (circle.y < 0 - circle.radius ) {
+                            // code to place circle exactly off the stage at the bottom //
                             circle.y = canvas.height + circle.radius;
+                            
                         } else if ( circle.y > canvas.height + circle.radius ) {
+                            // your code to place circle exactly off the stage at the top //
                             circle.y = 0 - circle.radius;
                         }
                         

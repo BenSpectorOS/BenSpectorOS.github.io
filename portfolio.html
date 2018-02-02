@@ -4,7 +4,7 @@
         <title>Ben's Portfolio</title>
         <style>
             body {
-                background: rgb(125, 198, 205);
+				background: url("https://s-media-cache-ak0.pinimg.com/originals/42/13/62/4213620254d4759dd99fa9216e88102a.jpg");
                 color: rgb(45, 45, 45);
                 padding: 10px;
                 font-family: arial;
@@ -55,10 +55,31 @@
                 flex: 1;
                 padding: 15px;
             }
+            /* portfolio styles */
+            #portfolio {
+                list-style-type: none;
+                padding-left: 0;
+            }
+            
+            #portfolio li {
+                background: #fff;
+                padding: 10px;
+                border-radius: 10px;
+                margin-bottom: 10px;
+            }
+            
+            #portfolio li:hover {
+                background: #eee;
+            } 
+            
+            #portfolio a {
+                text-decoration: none;
+                color: #454545;
+            }
         </style>
     </head>
     <body>
-        <div class="all-content">
+        <div id="all-contents">
             <nav>
                 <header>Ben's Portfolio</header>
                 <ul>
