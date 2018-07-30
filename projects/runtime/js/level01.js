@@ -1,4 +1,5 @@
-(function (window) {
+var level01 = function (window) {
+
     window.opspark = window.opspark || {};
 
     var draw = window.opspark.draw;
@@ -20,27 +21,19 @@
                 {type: 'sawblade',x:900,y:groundY}
             ]
         };
-
+        window.levelData = levelData;
         // set this to true or false depending on if you want to see hitzones
         game.setDebugMode(true);
 
         // BEGIN EDITING YOUR CODE HERE
-        function createSawblade(x, y) {
-           var hitZoneSize = 25;
-            var damageFromObstacle = 10;
-            var myObstacle = game.createObstacle(hitZoneSize,damageFromObstacle);
-            myObstacle.x = 800;
-            myObstacle.y = 400;
-            game.addGameItem(myObstacle); 
-            
-            var obstacleImage = draw.bitmap('img/sawblade.png');
-            myObstacle.addChild(obstacleImage);
-            
-            obstacleImage.x = -25;
-            obstacleImage.y = -25; 
-        }
         
-        createSawblade(800, 220);
 
     }
-})(window);
+};
+
+// DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
+if((typeof process !== 'undefined') &&
+    (typeof process.versions.node !== 'undefined')) {
+    // here, export any references you need for tests //
+    module.exports = level01;
+}

@@ -61,15 +61,15 @@ animals.push(animal);
 
 var duck = {
     species: 'duck', name: 'Jerome', noises: ['quack', 'honk', 'sneeze', 'woosh']
-}
+};
 
 var dog = {
     species: 'dog', name: 'Fred', noises: ['bark', 'roof', 'whimper', 'grrr']
-}
+};
 
 var rabbit = {
     species: 'rabbit', name: 'Reggie', noises: ['prrrr', 'chirp']
-}
+};
 
 animals.push(duck);
 animals.push(dog);
@@ -79,15 +79,15 @@ animals.push(rabbit);
 // Step 7 - Making Friends ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-var friends = [];
+// var friends = [];
 
-function getRandom(arr) {
-    return Math.floor(Math.random() * arr.length);
-}
+// var getRandom = function(arr) {
+//     return Math.floor(Math.random() * arr.length);
+// }
 
-friends.push(animals[getRandom(animals)].name);
+// friends.push(animals[getRandom(animals)].name);
 
-animals[3].friends = friends;
+// animals[3].friends = friends;
 
 /**
  * Nice work! You're done Part 1. Pat yourself on the back and

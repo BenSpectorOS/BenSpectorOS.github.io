@@ -47,28 +47,37 @@
                 ////////////////////////////////////////////////////////////////
                 
                 // TODO 1: Declare our variables //
-                var circle = undefined;
-                var circles = [];
+                var i, circle, circles;
                 
                 // TODO 2: Initialize our variables //
+                i = 0;
+                circles = [];
+
                 /* 
                  * For-loops let us execute a block of code a set number of times.
-                 * Using the count variable we can keep track of how many times we have run the loop.
-                 * Here we want to run our loop 100 times to create 100 circles.
+                 * Using the counter variable 'i' we can keep track of how many times we have run the loop by choosing
+                 * a starting value, an ending value, and an increment (how much the variable increases per loop).
+                 * 
+                 * for (var i = start; i < end; i++ ) {
+                 *     // Code to execute on each loop
+                 * }
+                 * 
+                 * NOTE: The end value is excluded when using "<". To include the end value use "<="
+                 *
+                 * Here we want to run our loop 100 times to create 100 circles. What should our start and end value be?
                  */
-                 
-                while (circles.length < 100) {
+                for (var i = 0; i < 100; i++) {
+                    // TODO 3 : YOUR CODE STARTS HERE //////////////////////////
                     circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
-        					
+					
                     if (circle.alpha < .2) {
-                    	draw.blurFilterOn(circle);
+    	                draw.blurFilterOn(circle);
                     }
-                    
+    
                     physikz.addRandomVelocity(circle, canvas);
-                    circle.velocityX *= 5;
-                    circle.velocityY *= 5;
                     circles.push(circle);
                     view.addChild(circle);
+                
                 }
                 
                 view.addChild(fps);
@@ -85,7 +94,7 @@
                         circle = circles[i];
                         
                         // TODO 5 : Update the circles position //
-                        physikz.updatePosition(circle);
+                        physikz.updatePosition(circles[i])
                         
                         // TODO 6 : YOUR CODE STARTS HERE //////////////////////
                         
@@ -93,18 +102,17 @@
                             // your code to place circle exactly off the stage at the left-side //
                             circle.x = 0 - circle.radius;
                             
-                        } else if (circle.x < 0 - circle.radius ) {
+                        } else if ( / * test for the circle exiting the left-side * / ) {
                             // your code to place circle exactly off the stage at the right-side //
-                            circle.x = canvas.width + circle.radius;
+                            
                         }
                         
-                        if (circle.y < 0 - circle.radius ) {
+                        if ( / * test for the circle exiting the top * / ) {
                             // code to place circle exactly off the stage at the bottom //
-                            circle.y = canvas.height + circle.radius;
                             
-                        } else if ( circle.y > canvas.height + circle.radius ) {
+                        } else if ( / * test for the circle exiting the bottom * / ) {
                             // your code to place circle exactly off the stage at the top //
-                            circle.y = 0 - circle.radius;
+                            
                         }
                         
                         // YOUR TODO 6 CODE ENDS HERE //////////////////////////

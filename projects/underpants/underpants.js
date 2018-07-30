@@ -26,6 +26,7 @@ _.identity = function(value) {
 }
 
 
+
 /** _.typeOf()
 * Arguments:
 *   1) Anything
@@ -46,16 +47,6 @@ _.identity = function(value) {
 * _.typeOf([1,2,3]) -> "array"
 */
 
-_.typeOf = function(value) {
-    if (Array.isArray(value)) {
-        return 'array';
-    } else if (value === null) {
-        return 'null';
-    } else {
-        return typeof value;
-    }
-}
-
 
 /** _.first()
 * Arguments:
@@ -75,21 +66,6 @@ _.typeOf = function(value) {
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
 
-_.first = function(array, num) {
-    if (!Array.isArray(array)) {
-        return [];
-    } else if (typeof num !== 'number') {
-        return array[0];
-    }
-    
-    num = Math.min(num, array.length);
-    var toReturn = [];
-    
-    for (var i = 0; i < num; i++) {
-        toReturn.push(array[i]);    
-    }
-    return toReturn;
-}
 
 /** _.last()
 * Arguments:
@@ -109,20 +85,6 @@ _.first = function(array, num) {
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
-_.last = function(array, num) {
-    if (!Array.isArray(array)) {
-        return [];
-    } else if (typeof num !== 'number') {
-        return array[array.length-1];
-    }
-    
-    num = Math.min(num, array.length);
-    var toReturn = [];
-    for (var i = array.length - num; i < array.length; i++) {
-        toReturn.push(array[i]);    
-    }
-    return toReturn;
-}
 
 /** _.each()
 * Arguments:
@@ -140,17 +102,6 @@ _.last = function(array, num) {
 *      -> should log "a" "b" "c" to the console
 */
 
-_.each = function(collection, func) {
-    if (_.typeOf(collection) === "array") {
-        for (var i = 0; i < collection.length; i++) {
-            func(collection[i], i, collection);
-        }
-    } else if (_.typeOf(collection) === 'object') {
-        for (var key in collection) {
-            func(collection[key], key, collection);
-        }
-    }
-}
 
 /** _.indexOf()
 * Arguments:
@@ -167,15 +118,6 @@ _.each = function(collection, func) {
 *   _.indexOf(["a","b","c"], "c") -> 2
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
-
-_.indexOf = function (array, value) {
-    for (var i = 0; i < array.length; i++) {
-        if (array[i] === value) {
-            return i;
-        }
-    }
-    return -1;
-}
 
 
 /** _.filter()
@@ -194,16 +136,6 @@ _.indexOf = function (array, value) {
 *   use _.each in your implementation
 */
 
-_.filter = function(array, func) {
-    var toReturn = [];
-    _.each(array, function(element, index, array) {
-        if (func(element, index, array)) {
-            toReturn.push(element);
-        }
-    });
-    return toReturn;
-}
-
 
 /** _.reject()
 * Arguments:
@@ -217,12 +149,6 @@ _.filter = function(array, func) {
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
-
-_.reject = function(array, func) {
-    return _.filter(array, function(element, index, array) {
-        return !(func(element, index, array))
-    });
-}
 
 
 /** _.partition()
@@ -244,12 +170,6 @@ _.reject = function(array, func) {
 }
 */
 
-_.partition = function(array, func) {
-    var rejected = _.reject(array,func);
-    var filtered = _.filter(array, func);
-    
-    return [filtered, rejected];
-}
 
 /** _.unique()
 * Arguments:
@@ -260,16 +180,6 @@ _.partition = function(array, func) {
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
-
-_.unique = function(array) {
-    var toReturn = [];
-    _.each(array, function(e, i, array) {
-        if ( toReturn.indexOf(array[i]) === -1 ) {
-            toReturn.push(array[i]);
-        }
-    })
-    return toReturn;
-}
 
 
 /** _.map()
@@ -288,13 +198,6 @@ _.unique = function(array) {
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
-_.map = function(collection, func) {
-    var toReturn = [];
-    _.each(collection, function(item, loc, collection) {
-        toReturn.push(func(item, loc, collection));
-    });
-    return toReturn;
-}
 
 /** _.pluck()
 * Arguments:
@@ -306,12 +209,6 @@ _.map = function(collection, func) {
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
-
-_.pluck = function(array, property) {
-    return _.map(array, function(element, i, array) {
-        return element[property];
-    })
-}
 
 
 /** _.contains()
@@ -330,8 +227,9 @@ _.pluck = function(array, property) {
 */
 
 _.contains = function(array, value) {
-    return _.indexOf(array,value) === -1 ? false : true;
+    return (array.includes(value)) ? true : false;
 }
+
 
 /** _.every()
 * Arguments:
@@ -353,19 +251,7 @@ _.contains = function(array, value) {
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
-_.every = function(collection, func) {
-    var result = true;
-    if (_.typeOf(func) !== 'function') {
-        _.each(collection, function(item, loc, collection) {
-            if (!item) result = false;
-        })
-    } else {
-        _.each(collection, function(item, loc, collection) {
-           if (!func(item, loc, collection)) result = false;
-        });
-    }
-    return result;
-}
+
 
 /** _.some()
 * Arguments:
@@ -388,20 +274,6 @@ _.every = function(collection, func) {
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
-_.some = function(collection, func) {
-    var result = false;
-    if (_.typeOf(func) !== 'function') {
-        _.each(collection, function(item, loc, collection) {
-            if (item) result = true;
-        })
-    } else {
-        _.each(collection, function(item, loc, collection) {
-           if (func(item, loc, collection)) result = true;
-        });
-    }
-    return result;
-}
-
 
 /** _.reduce()
 * Arguments:
@@ -422,14 +294,6 @@ _.some = function(collection, func) {
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
-_.reduce = function(array, func, seed) {
-    var result = seed;
-    _.each(array, function(element, index, array) {
-        result = (result != undefined) ? func(result, element, index) : array[0];
-    })
-    return result;
-    
-}
 
 /** _.extend()
 * Arguments:
@@ -446,14 +310,6 @@ _.reduce = function(array, func, seed) {
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 
-_.extend = function(object1, ...objects) {
-    _.each(objects, function(object, key, objects) {
-        for (var key in object) {
-            object1[key] = object[key];
-        }
-    });
-    return object1;
-}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

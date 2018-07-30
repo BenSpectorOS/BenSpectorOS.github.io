@@ -1,4 +1,4 @@
-(function (window) {
+var background = function (window) {
     'use strict';
     
     window.opspark = window.opspark || {};
@@ -18,10 +18,8 @@
 
         // container which will be returned
         var background;
-        var backgroundBox;
-        
-        var buildings = [];
         var tree;
+        // Add any variables that will be used by render AND update here:
         
         // add objects for display inb ackground
         // called at the start of game and whenever the page is resized
@@ -33,59 +31,26 @@
 
             background.removeAllChildren();
 
-            // TODO: 3 - YOUR DRAW CODE GOES HERE
-
             // this fills the background with a obnoxious yellow
             // you should modify this to suit your game
-            var backgroundFill = draw.rect(canvasWidth,groundY,'#9b0707');
+            var backgroundFill = draw.rect(canvasWidth,groundY,'black');
             background.addChild(backgroundFill);
             
+            // TODO: 3 - Add a moon and starfield
             var moon = draw.bitmap('img/moon.png');
-            moon.x = 70;
+            moon.x = 100;
             moon.y = 25;
-            moon.scaleX = 0.2;
-            moon.scaleY = 0.2;
+            moon.scaleX = 1.0;
+            moon.scaleY = 1.0;
             background.addChild(moon);
+            // TODO: 5 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             
-            var circle;
-            var stars = [];
-            for(var i=0;i<100;i++) {
-                circle = draw.circle(10,'white','LightGray',2);
-                circle.x = canvasWidth*Math.random();
-                circle.y = groundY*Math.random();
-                background.addChild(circle);
-                stars.push(circle);
-            }
             
-            // backgroundBox = draw.rect(100,100,'Blue');
-            // backgroundBox.x = 400;
-            // backgroundBox.y = groundY-100;
-            // background.addChild(backgroundBox);
-            
-            var buildingHeight = 300;
-            var building, height;
-            for(var i=0;i<8;++i) {
-                height = Math.random() * (buildingHeight-100) + 100;
-                building = draw.rect(75,height,'LightGray','Black',1);
-                building.x = 200*i;
-                building.y = groundY-height;
-                background.addChild(building);
-                buildings.push(building);
-            }
-            
-            var scale;
-            var treeHeight = 235;
-            // for(var i=0;i<3;++i) {
-                scale = Math.random() * 0.8 + 0.2;
-                tree = draw.bitmap('img/christmas-tree.png');
-                tree.x = 400*i;
-                tree.y = groundY-(235 * scale);
-                tree.scaleX = scale;
-                tree.scaleY = scale;
-                
-                background.addChild(tree);
-            // }
-            
+            // TODO 4: Part 1 - Add a tree
+            tree = draw.bitmap('img/tree.png');
+            tree.x = 300;
+            tree.y = groundY-220;
+            background.addChild(tree);
             
         }
         
@@ -97,19 +62,10 @@
             var canvasHeight = app.canvas.height;
             var groundY = ground.y;
             
-            for (var i=0; i<buildings.length; i++) {
-                var building = buildings[i];
-                building.x = building.x - 1;
-                if(building.x < -100) {
-                    building.x = canvasWidth;
-                }
-            }
+            // TODO 4: Part 2 - Move the tree!
+            tree.x = tree.x - 1;
             
-            tree.x = tree.x - 2;
-            if(tree.x < -100) {
-                tree.x = canvasWidth;
-            }
-            
+            // TODO 5: Part 2 - Parallax
             
 
         }
@@ -124,4 +80,11 @@
         render();
         return background;
     };
-}(window));
+};
+
+// DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
+if((typeof process !== 'undefined') &&
+    (typeof process.versions.node !== 'undefined')) {
+    // here, export any references you need for tests //
+    module.exports = background;
+}

@@ -10,14 +10,14 @@
 	<!-- BEGIN CSS -->
 	<style>
 		/* TODO 1 */
-		[class="box"] {
+		.box {
 			display: block;
 			position: absolute;
-			width: 70px;
-			height: 70px;
-			top: 100px;
-			left: 0px;
-			background-color: teal;
+			width: 100px;
+			height: 100px;
+			top: 200px;
+			left: 250px;
+			background-color: red;
 			font-size: 300%;
 			text-align: center;
 		}
@@ -43,17 +43,31 @@
 			// jQuery stuff setup for you
 			box = $('.box');
 			boardWidth = $('.board').width();
-
+			
 			// TODO 2
+			var position;
+			var points;
+			var speed;
+			
+			position = 0;
+			points = 0;
+			speed = 10;
+			
+			box.text(points);
+			box.css("left", position);
 
-
-			// TODO 3 / 4
+			// TODO 3 / 6 / 7 / 8
 			update = function() {
-
+				// write code here
+				position = position + speed;
+				box.css('left', position);
+				if(position > boardWidth) {
+				    position = 0;
+				}
 			};
 
 
-			// TODO 5 / 6
+			// TODO 4 / 5
 			handleBoxClick = function() {
 
 			};
