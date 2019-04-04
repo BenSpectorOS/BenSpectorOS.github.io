@@ -300,7 +300,7 @@
     function doNothing() { console.log('doing nothing!'); }
     
     function init(game) {
-        let asset = game.add.sprite(30, 0, 'halle');
+        let asset = game.add.sprite(900, 600, 'halle');
         asset.anchor.setTo(.5, 1);
         
         animations.walk = asset.animations.add('walk', Phaser.Animation.generateFrameNames('walk-', 1, 30, '.png', 4), 30, true);

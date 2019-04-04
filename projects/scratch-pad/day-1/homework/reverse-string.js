@@ -22,11 +22,28 @@
 function reverseString(input) {
     // YOUR CODE GOES BELOW HERE //
     
+    // plant
+    var str = '';
+  
+    // water
+    for ( var i = 0; i < input.length; i++) {
+      // do something to make str grow!
+      
+      str = input[i] + str  // str += input[i];
+      // str = 'he' + 'l'
+      console.log(str);
+    }
     
+    
+
+    // harvest
+    return str;
     
     
     // YOUR CODE GOES ABOVE HERE //
 }
+reverseString("hello");
+
 
 
 

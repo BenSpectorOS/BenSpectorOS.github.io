@@ -8,6 +8,28 @@ We're going to create a simple game where a box moves across the screen at an in
 
 Our goal for this game is to learn how to bring together HTML, CSS, and JavaScript. We use HTML to define our structure, CSS to define the style of that structure, and JavaScript in order to implement behavior. One of the primary ways we can implement behavior in JavaScript is by making modifications to the HTML and CSS in response to **events** which we will demonstrate by making this simple game. 
 
+### Take Away
+
+* Introduction to principals of animation
+* Introduction to cartesian coordinates
+* Using JavaScript to manipulate HTML elements
+* Using Variables to store data through the lifetime of a program
+* Using `if` statements to conditionally make changes to the game
+* Introduction to jQuery event handling
+
+### Work Flow
+
+For this program you will be given _**stencil code**_ found in the `index.html` file. This stencil will set up the program for you so that you can focus on the take aways of this project.
+
+#### TODOs
+To complete the assignment, below you'll find numbered **TODO** lesson steps.  While reading this lesson, whenever you come across a **TODO** step, you are expected to do this step, which may require you to create a file, or insert some HTML, CSS or JavaScript in the appropriate place.
+
+Please follow the instructions closely. Sometimes, however, we may be showing you code examples to make a point, so you only need to add code if we're explicitly telling you to do a lesson step, so please be aware of the actual lesson steps.
+
+#### Questions
+Throughout this README you will find **QUESTIONs** asking you to think critically about the code that you are writing. Whenever you encounter a **QUESTION** add a comment starting with `//` answering the question like so:
+
+    // QUESTION 1: After 50 milliseconds the position of the box will be 10
 
 ## Let's get started - installing bouncing box with `os install`
 NOTE: If you receive an error that says, `os install command not found` the opspark CLI is not installed. To install it, enter the command `npm intall -g opspark` in your bash terminal. 
@@ -93,20 +115,16 @@ Before we move on, lets reset those variables to their starting values
 
 You can create animation on a web page by changing the appearance of an object over time. A traditional animation is made up of individual "frames" of still images that change slightly over time. If you flip between these images rapidly the viewer sees the scene as motion (think of a flipbook!). 
 
-We can do the same thing in programming by constantly changing the state of our program. The `setInterval` function allows us to setup a timer, where we call a function every so often. **How often**, the time between function calls, is called the interval. That interval is expressed in milliseconds, or thousandths of a second. The function that we call will make slight changes every interval such that the state of our program is constantly animated.
+We can do the same thing in programming by constantly changing the state of our program. The `setInterval` function allows us to setup a timer, where we call a function every so often. **How often**, the time between function calls, is called the interval. That interval is expressed in milliseconds, or thousandths of a second. 
 
-The following code calls our `update` function every 50 milliseconds, which is about 20 times per second (It's already there so you don't need to copy/paste this):
-    
-    setInterval(update, 50);
+In this program, the code `setInterval(update, 50);` calls our `update` function every 50 milliseconds, which is about 20 times per second. Each time it does we need to change the `position` of the box and update the box's css accordingly. 
 
-The `update` function is where we will modify the state of our program so that when it is called our box moves. To do so we need to change the `position` of the box and update the box's css accordingly. 
+Add the following code nested within the `update` function:
 
-Add the following code to the update function:
+    position = position + speed;    // increase position on every update
+    box.css('left', position);      // update box's CSS with the new position
 
-    update = function() {
-        position = position + speed;
-        box.css('left', position);
-    };
+**QUESTION 1: If this code happens every 50 milliseconds, what will the value of position be after 200 milliseconds?** 
 
 ### TODO 4: Handling events
 
@@ -122,68 +140,60 @@ JavaScript allows us to change the web page in response to **events**. The follo
 
 Every time the user clicks the box, we want to reset the box to its starting position and make the game harder by increasing the speed of the box. Add the following code to the `handleBoxClick` function
 
-    handleBoxClick = function() {
-      speed = speed + 3;
-      position = 0;
-    }
+      position = 0;         // reset the position of the box to 0
+      speed = speed + 3;    // increase the speed of the box on every click
+      
+**QUESTION 2: If this code happens every time you click the box, what will the value of speed be after 3 clicks?** 
 
 ### TODO 5: Keeping Score
 
-We want to keep track of how many times the user has clicked on the box. 
+We want to keep track of how many times the user has clicked on the box by increasing the points variable by 1 and by updating the text displayed by the box.
 
-Add the following code to the `handleBoxClick` function
+**QUESTION 3: Where should this code go?**
 
-     points = points + 1;
+Add the following code to your program: 
 
-and then add the following code to the `update` function
+     points = points + 1;   // increase the point total
+     box.text(points);      // update the new points total displayed by the box
 
-    box.text(points);
+### TODO 6: Hey box, come back! Checking for boundaries
 
-What's going on here?
-
-### TODO 6: Hey box, come back!
-
-Each time we call the `update` function the position variable gets larger and larger until eventually our box has gone off the screen. The position of our box should never be greater than the width of the board which we've conveniently stored in a variable called `boardWidth`. 
+Each time we call the `update` function the position variable gets larger and larger until eventually our box has gone off the screen. The position of our box should never be greater than the width of the board which we've conveniently stored in a variable called `boardWidth` whose value is calculated using jQuery!
 
 Let's get our box back on the screen `if` the `position` is greater than `boardWidth`. Add the following code **nested inside** the `update` function:
 
     if(position > boardWidth) {
         position = 0;
     }
+    
+Now on every update the game will check to see if the box has hit the right wall and if it has it will reset the box back to the left side of the screen. 
 
-Your entire `update` function should look like this:
-
-    update = function() {
-        position = position + speed;
-        if(position > boardWidth) {
-         position = 0;
-        }
-        box.css('left', position);
-    };
+**But don't we want it to bounce instead of loop back to the start?** We will revisit this if block soon...
 
 
 ### TODO 7: Add Direction
 
-So we have the box loop back to the left the screen, but don't we want it to bounce off of the walls?
+Making the box "bounce" is simply providing the instructions, "When the box hits the right wall start moving left".
 
-Before we can make it bounce we have to figure out how to make the box move from right to left.
+In the previous step we learned how to say, "When the box hits the right wall", but how do we tell the box to move left? 
+
 Right now our motion comes from the following line in the `update` function:
 
     position = position + speed;
     
-Since `speed` is positive, `position` keeps getting bigger and moves further from the left. To make the box 
-move the other way we need to make speed **negative**. 
+Since `speed` is positive, this code makes `position` increase and therefore move to the right. To make the box 
+move the other way we need to make position smaller. Well, we could subtract speed instead of adding it but then we wouldn't be able to make the box move to the right anymore. Let's use a variable that we can switch to control the direction!
 
-At the top of your program where the other variables are declared, declare a variable `direction` that will tell us whether to add or subract the speed. **Do this just below the other variable declarations**
+At the top of your program under `TODO 2` where the other variables are declared, declare a variable `direction`:
 
     var direction;
     direction = 1;
     
-Now in the `update` function we want to re-assign the value of position like so:
+Now in the `update` function, replace the code that changes `position` so that it re-assigns the value of position like so:
 
     position = position + (speed * direction);
     
-When `direction` is set to 1 then `speed` is added to position and the box moves to the right. But when `direction` is set to -1,the speed is subracted from the position, sending the box to the left.
+When `direction` is set to 1 then `speed` is added to position and the box moves to the right. But when `direction` is set to -1,the speed is subracted from the position, sending the box to the left. Now we need to decide when to change it!
 
 ### TODO 8: Make it Bounce
 
@@ -203,16 +213,25 @@ Do this and confirm that the box bounces off the right wall. It should look like
         direction = -1;
     }
     
-Now that your box bounces off the right wall you'll need to make it bounce off the left wall. What will be the condition? What do we want to do if that condition is true? Do this yourself!
+**Now  you'll need to make it bounce off the left wall. What will be the condition? What should happen if that condition is true? Do this yourself!**
 
-#### Hint: At what position value do you want the box to "bounce" off the left wall?
+Hint: At what position value do you want the box to "bounce" off the left wall?
 
 ## Good Job
 
 You've written your first game! Here are some ways you can try and make your game even more awesome.
 
-### Can you make the box change color with each click? How about every 3 clicks?
-### Can you make the amount that the box speeds up with each click increase with every 3 clicks?
-### Can you move the box up and down?
-### Use the [background-image](http://www.w3schools.com/cssref/pr_background-image.asp) CSS property to change your box or the background
+### Challenge 1) Use the [background-image](http://www.w3schools.com/cssref/pr_background-image.asp) CSS property to change your box or the background
+
+### Challenge 2) Can you make the box change color with each click? How about every 3 clicks?
+
+### Challenge 3) Can you make the amount that the box speeds up with each click increase with every 3 clicks?
+
+### Challenge 4) Can you move the box up and down?
+Hint: To calculate the height of the window, simply add:
+
+    var boardHeight = $(window).height(); 
+
+
+
 

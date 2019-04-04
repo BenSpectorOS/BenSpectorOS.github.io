@@ -14,10 +14,7 @@
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
-    var greaterThan = function(value) {
-        
-    }
-    return greaterThan;
+    
     
     
     // YOUR CODE ABOVE HERE //

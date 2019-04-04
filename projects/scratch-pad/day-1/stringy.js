@@ -14,8 +14,9 @@
  */
 function length(string) {
     // YOUR CODE BELOW HERE //
-    return string.length;
     
+    return string.length;
+
     // YOUR CODE ABOVE HERE //
 }
 
@@ -24,8 +25,8 @@ function length(string) {
  */
 function toLowerCase(string) {
     // YOUR CODE BELOW HERE //
-    return string.toLowerCase();
 
+    return string.toLowerCase();
 
     // YOUR CODE ABOVE HERE //
 }
@@ -36,7 +37,7 @@ function toLowerCase(string) {
 function toUpperCase(string) {
     // YOUR CODE BELOW HERE //
 
-
+    return string.toUpperCase();
 
     // YOUR CODE ABOVE HERE //
 }
@@ -47,6 +48,7 @@ function toUpperCase(string) {
  * Examples:
  *
  *      toDashCase('Hello World'); // => 'hello-world'
+ *      toDashCase('what is up YALL'); // => what-is-up-yall
  *
  * TIP: How can you look for and replace a space in a String? How can you
  *      enforce lowercase? Look at the global replace link below, or, try String
@@ -57,7 +59,17 @@ function toUpperCase(string) {
 function toDashCase(string) {
     // YOUR CODE BELOW HERE //
 
-
+    // 1) change input to lowercase
+    // 2) AND replace spaces with "-"
+    
+    var lowerStr = string.toLowerCase(); // change input to lowercase
+    var strArr = lowerStr.split(" "); // convert lowercase string to array
+    var dashStr = strArr.join("-");  // convert array back to string
+    
+    // var dashStr = string.toLowerCase().split(" ").join("-");
+    
+    return dashStr;
+    
 
     // YOUR CODE ABOVE HERE //
 }
@@ -69,14 +81,29 @@ function toDashCase(string) {
  * Example:
  *
  *      beginsWith('Max', 'm'); // => true;
- *      beginsWith('Max', 'z'); // => false;
+ *      beginsWith('max', 'M'); // => true;
+ *      beginsWith("Ben", "b");
  *
- * TIP: How can you use Array access to your advantage here? How can you
+ * TIP: How can you use Bracket Notation to your advantage here? How can you
  *      ensure uppercase and lowercase can be compared equally?
+ * 
+ *      var letters = ['a', 'b', 'c', 'd'];
+ * 
+ *  
+ *      
  */
 function beginsWith(string, char) {
     // YOUR CODE BELOW HERE //
 
+    // string = ["M", "a", "x"];
+    // variableName[index]
+    var firstCharacter = string[0];
+    if (firstCharacter.toLowerCase() === char.toLowerCase()) {
+        return true;
+    } else {
+        return false;
+    }
+    
     
 
     // YOUR CODE ABOVE HERE //
@@ -118,6 +145,10 @@ function concat(stringOne, stringTwo) {
 /**
  * Given any number of Strings, return all of them joined together.
  *
+ * Example:
+ *
+ *      join("my", "name", "is", "Ben"); // => "mynameisBen";
+ *
  * TIP: This Function pulls out all the arguments passed to it and stores them
  *      in an Array called args.
  */
@@ -131,6 +162,10 @@ function join(stringOne, stringTwo) {
 
 /**
  * Given two Strings, return the longest of the two.
+ *
+ * Example:
+ *
+ *      longest("ben", "maggie");   //-> "maggie"
  *
  * TIP: What property of the String do we need to compare?
  */

@@ -40,9 +40,12 @@ describe("#first-class-functions", function () {
     describe("createStartsWithFilter()", function () {
         it('should, given a character, return a Function that tests whether a String value starts with the character', function() {
             var startsWithC = createStartsWithFilter('C');
+            var startsWithJ = createStartsWithFilter('j');
             expect(startsWithC).to.be.instanceof(Function);
             expect(startsWithC('Carol')).to.be.true;
             expect(startsWithC('carol')).to.be.true;
+            expect(startsWithJ('jack')).to.be.true;
+            expect(startsWithJ('Jack')).to.be.true;
             expect(startsWithC('David')).to.be.false;
         });
     });
@@ -50,9 +53,12 @@ describe("#first-class-functions", function () {
     describe("createEndsWithFilter()", function () {
         it('should, given a character, return a Function that tests whether a String value ends with the character', function() {
             var endsWith_k = createEndsWithFilter('k');
+            var endsWith_M = createEndsWithFilter('M');
             expect(endsWith_k).to.be.instanceof(Function);
             expect(endsWith_k('Dork')).to.be.true;
             expect(endsWith_k('DORK')).to.be.true;
+            expect(endsWith_M('Dorm')).to.be.true;
+            expect(endsWith_M('DORM')).to.be.true;
             expect(endsWith_k('Dorky')).to.be.false;
         });
     });

@@ -24,7 +24,16 @@
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
     
+    // plant - what type am i returning?
+    var arr = [];
     
+    // water
+    for (var i = start; i <= end; i++) {
+        arr.push(i);
+    }
+    
+    // harvest
+    return arr;
     
     
     // YOUR CODE GOES ABOVE HERE //

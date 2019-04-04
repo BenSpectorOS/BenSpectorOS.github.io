@@ -36,7 +36,7 @@ module.exports = function (grunt) {
             all: js_files
         },
         mocha_phantomjs: {
-            all: ["test/runner.html"]
+            all: ["test/game.html"]
         },
         uglify: {
             my_target: {
