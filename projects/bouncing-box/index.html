@@ -1,68 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Bouncing Box</title>
-	<script src="jquery.min.js"></script>
-
-<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
-
-	<!-- BEGIN CSS -->
-	<style>
-		/* TODO 1 */
-		.box {
-			display: block;
-			position: absolute;
-			width: 70px;
-			height: 70px;
-			top: 100px;
-			left: 50px;
-			background-color: purple;
-			font-size: 300%;
-			text-align: center;
-		}
-	</style>
-
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    .box {
+      display: block;
+      width: 70px;
+      height: 70px;
+      top: 100px;
+      left: 0px;
+      background-color: teal;
+      position: absolute;
+      font-size: 300%;
+      text-align: center;
+    }
+  </style>
 </head>
 <body class="board">
-	<!-- HTML for the box -->
-	<div class="box">?</div>
+    <div class="box">0</div>
+  
+    <script>
+        //what variables we will use
+        var box, boardWidth, position, speed, points;
+        var setBoxPosition, update, makeFaster;
+        var direction;
 
-	<!-- BEGIN JAVASCRIPT -->
-	<script>
-		(function(){
-			'use strict'
-			/* global &*/
+        //initialize variables
+        position = 0;
+        points = 0;
+        speed = 10;
+        box = $('.box');
+        boardWidth = $('.board').width();
 
-			// jQuery stuff setup for you
-			var box = $('.box');
-			var boardWidth = $('.board').width();
-			
-			var position = 0;
-			var points = 0;
-			var speed = 10;
-			var direction = 1;
-	
-			// TODO 2 - Variable declarations 
-			
-			var update = function() {
-				// TODO 3 / 6 / 7 / 8
+        //functions we will use
+        function update() {
+          position = position + speed;
+          console.log('new position: ' + position);
 
-			};
+          if(position > boardWidth) {
+            speed = -speed;
+          }
+          if(position < 0) {
+            speed = -speed;
+          }
 
-			
-			var handleBoxClick = function() {
-				// TODO 4 / 5
-		
-			};
-			
-			
-			//this executes the update function code every 50 milliseconds
-			setInterval(update, 50);
-			// this executes the handleBoxClick function code every time the box is clicked on
-			box.on('click', handleBoxClick);
-	
-		})();
-	</script>
+          box.css('left', position);  
+          box.text(points);
+        }
+
+        function makeFasterAndIncreasePoints() {
+          speed = speed + 3;
+          points = points + 1;
+          position = 0;
+        }
+
+        //How we interact with the user
+        box.on('click', makeFasterAndIncreasePoints)
+
+        //start game running
+        setInterval(update, 50);
+
+
+    </script>
 </body>
 </html>
