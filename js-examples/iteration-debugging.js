@@ -1,4 +1,5 @@
 function iterationDebugging() {
+  debugger;
 
   var fruits = [
     {kind: 'apple', price: 0.5},
@@ -10,13 +11,10 @@ function iterationDebugging() {
     {kind: 'pineapple', price: 2.5}
   ];
   
-  debugger;
-  
   for (var i = 0; i < fruits.length; i++) {
     var fruit = fruits[i];
     var kind = fruit.kind;
     var price = fruit.price;
     console.log(`the price of one ${kind} is $${price}`);
   }
-  
 }
