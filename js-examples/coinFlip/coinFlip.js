@@ -18,7 +18,8 @@ $(document).ready(function() {
         }
         
         // display the result
-        $("#result").text(headsSoFar + " out of " + maxFlips);
+        $("#heads").text("heads: " + headsSoFar);
+        $("#maxFlips").text("maxFlips: " + maxFlips);
     }
 
 
