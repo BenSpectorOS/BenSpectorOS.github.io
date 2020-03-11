@@ -1,25 +1,26 @@
 $(document).ready(function() {
     // initialization
-    var headsSoFar;
-    var maxFlips = 1000;
+    var heads;
+    var totalFlips = 1000;
 
     $("button").on('click', runTest)
 
     // core logic
     function runTest() {
         // reset headsSoFar to 0 before each test
-        headsSoFar = 0;
+        heads = 0;
         
-        // run the test maxFlips times
-        for (var flips = 0; flips < maxFlips; flips++) {
-            if (coinFlip() === "heads") {
-                headsSoFar++;
+        // run the test totalFlips times
+        for (var flips = 0; flips < totalFlips; flips++) {
+            var result = coinFlip();
+            if (result === "heads") {
+                heads++;
             }
         }
         
         // display the result
-        $("#heads").text("heads: " + headsSoFar);
-        $("#maxFlips").text("maxFlips: " + maxFlips);
+        $("#heads").text("Heads: " + heads);
+        $("#totalFlips").text("Out of: " + totalFlips);
     }
 
 
