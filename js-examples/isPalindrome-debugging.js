@@ -8,12 +8,15 @@ function isPalindromeDebugging() {//DO NOT DELETE
     "pop" is a simple example.
     */
    
-   console.log(isPalindrome("pop"));   // <== this is a palindrome
-   console.log(isPalindrome("racecar"));  // <== this is too!
+   console.log("pop: " + isPalindrome("pop"));   // <== this is a palindrome
+   console.log("racecar: " + isPalindrome("racecar"));  // <== this is too!
    
-   console.log(isPalindrome("food"));   // <== this is not a palindrome
-   console.log(isPalindrome("banana")); // <== neither is this
+   console.log("food: " + isPalindrome("food"));   // <== this is not a palindrome
+   console.log("banana: " + isPalindrome("banana")); // <== neither is this
    
+    var word = prompt("choose a word");
+    alert("is " + word + " a palindrome? " + isPalindrome(word));
+
    function isPalindrome(string) {
        for (var i = 0; i < string.length/2; i++) {
            var frontLetter = string[i];
