@@ -1,6 +1,4 @@
 function isPalindromeDebugging() {//DO NOT DELETE
-    console.clear();
-    debugger;
     /* 
     A palindrome is a word that is spelled the same forwards as 
     it is backwards.
@@ -11,7 +9,8 @@ function isPalindromeDebugging() {//DO NOT DELETE
     alert("is " + word + " a palindrome? " + isPalindrome(word));
 
    function isPalindrome(string) {
-       for (var i = 0; i < string.length/2; i++) {
+        debugger;
+        for (var i = 0; i < string.length/2; i++) {
            var frontLetter = string[i];
            var endLetter = string[string.length - i];
            
@@ -23,7 +22,4 @@ function isPalindromeDebugging() {//DO NOT DELETE
         }
         return true;
     }
-
-
-
 } //DO NOT DELETE
