@@ -20,7 +20,6 @@ body {
 
 .snake {
   background-color: green;
-  z-index: 2;
 }
 
 #snake-head {
@@ -29,7 +28,6 @@ body {
 
 #apple {
   background-color: red;
-  z-index: 1;
 }
 
 h1 {
