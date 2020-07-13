@@ -22,7 +22,7 @@ var init = function (window) {
         var circles = [];        
 
         for (var count = 1; count <= 100; count++) {
-            var circle = draw.randomCircleInArea(canvas, true, true, '#999', 2, {radius: 100, x:canvas.width, y:canvas.height});
+            var circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
             circle.x = 100;
             circle.y = 200;
             circle.velocityX = -5 + (Math.random() * 10);
