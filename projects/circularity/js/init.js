@@ -72,9 +72,7 @@ var init = function (window) {
         // NO CODE BELOW HERE                                             //
         ////////////////////////////////////////////////////////////////////
         
-        game.circle = circle;
         game.circles = circles;
-        game.drawCircle = drawCircle;
         game.update = update;
         
         app.addUpdateable(window.opspark.game);
