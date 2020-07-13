@@ -23,10 +23,10 @@ var init = function (window) {
 
         for (var count = 1; count <= 100; count++) {
             var circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
-            circle.x = 100;
-            circle.y = 200;
-            circle.velocityX = -5 + (Math.random() * 10);
-            circle.velocityY = -5 + (Math.random() * 10);
+            circle.x = randomNumberBetween(0, canvas.width);
+            circle.y = randomNumberBetween(0, canvas.height);
+            circle.velocityX = randomNumberBetween(-5, 5);
+            circle.velocityY = randomNumberBetween(-5, 5);
             view.addChild(circle);
             circles.push(circle);
         }
@@ -64,8 +64,10 @@ var init = function (window) {
                 circles[i].y += circles[i].velocityY;
                 game.checkCirclePosition(circles[i]);    
             }
-            
-            
+        }
+        
+        function randomNumberBetween(min, max) {
+            return min + (Math.random() * (max-min));   
         }
         
         ////////////////////////////////////////////////////////////////////
