@@ -19,34 +19,17 @@ var init = function (window) {
         // ALL CODE GOES BELOW HERE                                   //
         ////////////////////////////////////////////////////////////////
         
-        // TODO 1 : Declare and initialize our variables //
-        var circle;
         var circles = [];        
 
-        // TODO 2 : Create a function that draws a circle  //
-        var drawCircle = function() {
-            circle = draw.randomCircleInArea(canvas, true, true, '#999', 2, {radius: 100, x:canvas.width, y:canvas.height});
-            physikz.addRandomVelocity(circle, canvas);
+        for (var count = 1; count <= 100; count++) {
+            var circle = draw.randomCircleInArea(canvas, true, true, '#999', 2, {radius: 100, x:canvas.width, y:canvas.height});
+            circle.x = 100;
+            circle.y = 200;
+            circle.velocityX = -5 + (Math.random() * 10);
+            circle.velocityY = -5 + (Math.random() * 10);
             view.addChild(circle);
             circles.push(circle);
-            // other code...
         }
-        
-        /* 
-        circle.x = x coordinate of a circle
-        circle.y = y coordinate of a circle
-        
-        canvas.width = width of the window
-        canvas.height = height of the window
-        
-        */
-        
-
-        // TODO 3 : Call the drawCircle function 5 times //
-        drawCircle();
-        
-        // TODO 7 : Create a Loop to call drawCircle 100 times
-
     
         view.addChild(fps);
         app.addUpdateable(fps);
@@ -75,15 +58,14 @@ var init = function (window) {
         }
     
         var update = function() {
-            // TODO 4 : Update the circle's position //
-            
-            physikz.updatePosition(circles[0]);
-            // TODO 6 : Call checkCircleBounds on your circles.
            
-            game.checkCirclePosition(circles[0]);
-            // TODO 8 : Iterate over the array
+            for (var i = 0; i <= circles.length - 1; i++) {
+                circles[i].x += circles[i].velocityX;
+                circles[i].y += circles[i].velocityY;
+                game.checkCirclePosition(circles[i]);    
+            }
             
-    
+            
         }
         
         ////////////////////////////////////////////////////////////////////
