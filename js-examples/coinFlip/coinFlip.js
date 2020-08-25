@@ -1,14 +1,14 @@
 $(document).ready(function() {
-    // initialization
-    var heads;
+    // setup
+    
     var totalFlips = 1000;
 
     $("button").on('click', runTest)
 
     // core logic
     function runTest() {
-        // reset headsSoFar to 0 before each test
-        heads = 0;
+        // reset heads to 0 before each test
+        var heads = 0;
         
         // run the test totalFlips times
         for (var flips = 0; flips < totalFlips; flips++) {
